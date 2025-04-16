@@ -22,7 +22,20 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+ <body>
+  <% flash.each do |key, message| %>
+    <div class="flash <%= key %>"><%= message %></div>
+  <% end %>
+
+  <% unless devise_controller? %>
+    <% if user_signed_in? %>
+      <p><%= current_user.email %> さん、ようこそ！</p>
+      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path %> |
+      <%= link_to '新規登録', new_user_registration_path %>
+    <% end %>
+  <% end %>  
+  <%= yield %>
+</body>
 </html>

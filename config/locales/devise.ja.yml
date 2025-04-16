@@ -1,0 +1,29 @@
+ja:
+  devise:
+    sessions:
+      new:
+        sign_in: "ログイン"
+        email: "メールアドレス"
+        password: "パスワード"
+        remember_me: "ログイン状態を保持する"
+        submit: "ログイン"
+      signed_in: "正常にログインしました。"
+      signed_out: "正常にログアウトしました。"
+    registrations:
+      new:
+        sign_up: "新規登録"
+        email: "メールアドレス"
+        password: "パスワード（6文字以上）"
+        password_confirmation: "パスワード（確認）"
+        submit: "新規登録"
+      signed_up: "ようこそ！登録に成功しました。"
+    passwords:
+      new:
+        forgot_your_password: "パスワードをお忘れですか？"
+        email: "メールアドレス"
+        submit: "パスワード再設定メールを送信"
+    shared:
+      links:
+        sign_in: "ログイン"
+        sign_out: "ログアウト"
+        sign_up: "新規登録"
