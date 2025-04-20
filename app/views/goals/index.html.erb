@@ -1,0 +1,16 @@
+<h1>目標一覧</h1>
+
+<%= link_to "新規投稿", new_goal_path, class: "bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded" %>
+
+<% if @goals.any? %>
+  <ul class="mt-4 space-y-2">
+    <% @goals.each do |goal| %>
+      <li class="border p-4 rounded hover:shadow">
+        <%= link_to goal.title, goal_path(goal), class: "text-xl font-semibold" %>
+        <p class="text-gray-600 text-sm"><%= goal.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="mt-4 text-gray-600">まだ目標が投稿されていません。</p>
+<% end %>

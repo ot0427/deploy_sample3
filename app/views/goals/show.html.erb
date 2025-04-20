@@ -1,0 +1,15 @@
+<h1><%= @goal.title %></h1>
+
+<p class="text-gray-700"><%= @goal.description %></p>
+
+<% if @goal.image.attached? %>
+  <div class="mt-4">
+    <%= image_tag @goal.image.variant(resize_to_limit: [600, 400]), class: "rounded shadow" %>
+  </div>
+<% end %>
+
+<div class="mt-6 space-x-2">
+  <%= link_to "編集", edit_goal_path(@goal), class: "bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded" %>
+  <%= link_to "削除", goal_path(@goal), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded" %>
+  <%= link_to "一覧に戻る", goals_path, class: "text-gray-600" %>
+</div>

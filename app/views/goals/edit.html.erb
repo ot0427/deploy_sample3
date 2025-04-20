@@ -1,0 +1,36 @@
+<h1>目標を編集</h1>
+
+<%= form_with(model: @goal, local: true) do |f| %>
+  <!-- new.html.erb と同様のフォーム -->
+  <% if @goal.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 p-4 mb-4 rounded">
+      <h2><%= pluralize(@goal.errors.count, "エラー") %>が発生しました：</h2>
+      <ul>
+        <% @goal.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= f.label :title, "タイトル", class: "block font-medium" %>
+    <%= f.text_field :title, class: "w-full border rounded p-2" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :description, "詳細", class: "block font-medium" %>
+    <%= f.text_area :description, class: "w-full border rounded p-2", rows: 5 %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :image, "画像", class: "block font-medium" %>
+    <%= f.file_field :image, class: "mt-1" %>
+    <% if @goal.image.attached? %>
+      <p class="mt-2">現在の画像：</p>
+      <%= image_tag @goal.image.variant(resize_to_limit: [200, 200]), class: "rounded" %>
+    <% end %>
+  </div>
+
+  <%= f.submit "更新する", class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" %>
+<% end %>
+
+<%= link_to "一覧に戻る", goals_path, class: "text-sm text-gray-600 mt-4 inline-block" %>

@@ -1,0 +1,23 @@
+<h1>新しい目標を投稿</h1>
+<% if @goal.errors.any? %>
+  <div class="mb-4 p-4 bg-red-100 border border-red-400 rounded">
+    <ul class="list-disc list-inside text-red-700">
+      <% @goal.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @goal, local: true, data: { turbo: false } do |f| %>
+  <%= f.label :title, "タイトル" %><br>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label :description, "詳細" %><br>
+  <%= f.text_area :description %><br><br>
+
+  <%= f.label :image, "画像" %><br>
+  <%= f.file_field :image %><br><br>
+
+  <%= f.submit "投稿する" %>
+<% end %>
