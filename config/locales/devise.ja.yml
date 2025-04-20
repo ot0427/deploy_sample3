@@ -27,3 +27,14 @@ ja:
         sign_in: "ログイン"
         sign_out: "ログアウト"
         sign_up: "新規登録"
+
+  activerecord:
+    models:
+      goal: "目標"
+    attributes:
+      goal:
+        title: "タイトル"
+        description: "詳細"
+    errors:
+      messages:
+        blank: "を入力してください"
