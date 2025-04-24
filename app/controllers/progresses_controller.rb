@@ -8,10 +8,10 @@ class ProgressesController < ApplicationController
           redirect_to @goal, alert: "登録に失敗しました"
         end
       end
-      
+
       private
-      
+
       def progress_params
         params.require(:progress).permit(:value, :notes)
-    end      
+    end
 end

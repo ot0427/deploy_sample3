@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Goal（目標）と、その配下に Progress（進捗）をネスト
   resources :goals do
-    resources :progresses, only: [:create]
+    resources :progresses, only: [ :create ]
   end
 
   # 投稿機能（もし Posts を使うならそのまま）
