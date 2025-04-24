@@ -1,10 +1,10 @@
 class GoalsController < ApplicationController
   # ログイン不要: index, show
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [ :index, :show ]
   # 誰でも見られる Goal の取得
-  before_action :set_goal, only: [:show]
+  before_action :set_goal, only: [ :show ]
   # オーナー確認: edit, update, destroy
-  before_action :set_owner_goal, only: [:edit, :update, :destroy]
+  before_action :set_owner_goal, only: [ :edit, :update, :destroy ]
 
   def index
     @goals = Goal.all.order(created_at: :desc)

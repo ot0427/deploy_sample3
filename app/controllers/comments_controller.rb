@@ -2,7 +2,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_goal
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: [ :edit, :update, :destroy ]
 
   def create
     @comment = @goal.comments.build(comment_params.merge(user: current_user))
