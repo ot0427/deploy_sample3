@@ -4,4 +4,5 @@ class Goal < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   has_many :progresses, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end
