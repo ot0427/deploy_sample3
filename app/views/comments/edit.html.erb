@@ -1,0 +1,10 @@
+<h1>コメントを編集</h1>
+
+<%= form_with model: [@goal, @comment], local: true do |f| %>
+  <div class="mb-2">
+    <%= f.text_area :content, rows: 3 %>
+  </div>
+  <%= f.submit "更新する", class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" %>
+<% end %>
+
+<%= link_to "戻る", @goal, class: "text-gray-600 mt-4 inline-block" %>
