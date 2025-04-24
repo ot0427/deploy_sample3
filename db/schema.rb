@@ -53,8 +53,8 @@ ActiveRecord::Schema[8.0].define(version: 5) do
   end
 
   create_table "progresses", force: :cascade do |t|
-    t.bigint "goal_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "goal_id", null: false
     t.integer "value"
     t.text "notes"
     t.datetime "created_at", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 5) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
+    t.string "email", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "encrypted_password", default: "", null: false

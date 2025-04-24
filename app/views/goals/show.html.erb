@@ -1,15 +1,54 @@
+<!-- 1. ゴール情報 -->
 <h1><%= @goal.title %></h1>
-
 <p class="text-gray-700"><%= @goal.description %></p>
-
 <% if @goal.image.attached? %>
   <div class="mt-4">
     <%= image_tag @goal.image.variant(resize_to_limit: [600, 400]), class: "rounded shadow" %>
   </div>
 <% end %>
 
+<!-- 2. 編集・削除・一覧に戻るリンク -->
 <div class="mt-6 space-x-2">
   <%= link_to "編集", edit_goal_path(@goal), class: "bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded" %>
-  <%= link_to "削除", goal_path(@goal), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded" %>
+  <%= link_to "削除", goal_path(@goal),
+        method: :delete,
+        data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+        class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded" %>
   <%= link_to "一覧に戻る", goals_path, class: "text-gray-600" %>
 </div>
+
+<hr class="my-6"/>
+
+<!-- 3. ここに円グラフを追加 -->
+<h2 class="text-xl font-bold mb-4">進捗グラフ</h2>
+<%= pie_chart [
+      ["達成済み", @progress_value],
+      ["残り",       (100 - @progress_value).clamp(0, 100)]
+    ] %>
+
+<hr class="my-6"/>
+
+<!-- 4. 進捗登録フォーム -->
+<h2 class="text-xl font-bold mb-4">進捗を登録</h2>
+<%= form_with model: [@goal, @goal.progresses.build], local: true do |f| %>
+  <div class="mb-2">
+    <%= f.label :value, "進捗率 (%)", class: "block text-gray-700" %>
+    <%= f.number_field :value, in: 0..100, class: "border rounded px-2 py-1 w-20" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :notes, "メモ", class: "block text-gray-700" %>
+    <%= f.text_area :notes, rows: 3, class: "border rounded px-2 py-1 w-full" %>
+  </div>
+  <%= f.submit "登録する", class: "bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" %>
+<% end %>
+
+<!-- 5. 進捗一覧表示 -->
+<h2 class="text-lg font-semibold mt-8 mb-4">進捗一覧</h2>
+<ul class="list-disc pl-5 space-y-2">
+  <% @goal.progresses.order(created_at: :desc).each do |p| %>
+    <li>
+      <%= p.value %>％ — <%= p.created_at.strftime("%Y/%m/%d") %>
+      <%= p.notes.presence && "（#{p.notes}）" %>
+    </li>
+  <% end %>
+</ul>
