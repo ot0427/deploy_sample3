@@ -31,10 +31,15 @@ ja:
   activerecord:
     models:
       goal: "目標"
+      user:
+        one: "ユーザー"
+        other: "ユーザー"
     attributes:
       goal:
         title: "タイトル"
         description: "詳細"
+      user:
+        terms_accepted: ""
     errors:
       messages:
         blank: "を入力してください"

@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   # ログイン不要: index, show
   before_action :authenticate_user!, except: [ :index, :show ]
-  # 誰でも見られる Goal の取得
+  # 誰でも見られる Goal の取得（show）
   before_action :set_goal, only: [ :show ]
   # オーナー確認: edit, update, destroy
   before_action :set_owner_goal, only: [ :edit, :update, :destroy ]
@@ -51,9 +51,16 @@ class GoalsController < ApplicationController
 
   private
 
-  # 誰でも取得可能
+  # 誰でも取得可能（公開だけ表示したいなら Goal.published を使う）
   def set_goal
-    @goal = Goal.find(params[:id])
+    @goal = Goal.find_by(id: params[:id])
+
+    unless @goal
+      Rails.logger.info "Goal##{params[:id]} not found"
+      render file: Rails.root.join("public/404.html"),
+                    status: :not_found,
+                    layout: false
+    end
   end
 
   # オーナーのみ取得

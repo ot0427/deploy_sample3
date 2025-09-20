@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :goals, dependent: :destroy
   has_many :progresses, dependent: :destroy
   has_many :comments, dependent: :destroy
+  validates :terms_accepted, acceptance: { accept: true, message: "利用規約に同意してください" }
 end

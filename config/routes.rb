@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "pages/terms"
   get "comments/create"
   get "comments/edit"
   get "comments/update"
@@ -20,4 +21,6 @@ Rails.application.routes.draw do
 
   # トップページ
   root "goals#index"
+
+  get "terms", to: "pages#terms"
 end

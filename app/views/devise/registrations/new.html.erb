@@ -11,7 +11,7 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -19,6 +19,13 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <!-- ここにチェックボックス -->
+  <div class="field">
+    <%= f.check_box :terms_accepted %>
+    <%= f.label :terms_accepted, "利用規約に同意する" %>
+    <%= link_to "利用規約を見る", terms_path, target: "_blank" %>
   </div>
 
   <div class="actions">
