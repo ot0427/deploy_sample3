@@ -40,6 +40,10 @@ ja:
         description: "詳細"
       user:
         terms_accepted: ""
-    errors:
-      messages:
-        blank: "を入力してください"
+
+  errors:
+    messages:
+      blank: "を入力してください"
+      too_short:
+        one: "は短すぎます（最低%{count}文字）"
+        other: "は短すぎます（最低%{count}文字）"
