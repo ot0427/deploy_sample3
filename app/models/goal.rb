@@ -5,4 +5,5 @@ class Goal < ApplicationRecord
   validates :description, presence: true
   has_many :progresses, dependent: :destroy
   has_many :comments, dependent: :destroy
+  scope :published, -> { where(is_published: true) }
 end
