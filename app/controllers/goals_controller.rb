@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_goal, only: [:show]
-  before_action :set_owner_goal, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :set_goal, only: [ :show ]
+  before_action :set_owner_goal, only: [ :edit, :update, :destroy ]
 
   def index
     if user_signed_in?
