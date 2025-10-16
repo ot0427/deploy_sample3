@@ -8,9 +8,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- ===== meta-tags の出力場所（重要） ===== -->
     <%= display_meta_tags %>
-    <!-- ====================================== -->
 
     <%= yield :head %>
 
@@ -21,20 +19,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body>
-    <!-- ここから追加 -->
+
+  <!-- ✅ bodyタグは1つだけにする -->
+  <body class="<%= controller_name %>-<%= action_name %>">
     <% if user_signed_in? %>
       <p>
         ログイン中: <%= current_user.email %> |
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
       </p>
     <% else %>
-      <p>
-        <%= link_to "ログイン", new_user_session_path %> |
-        <%= link_to "新規登録", new_user_registration_path %>
-      </p>
     <% end %>
-    <!-- ここまで追加 -->
 
     <%= yield %>
   </body>

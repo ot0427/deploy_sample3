@@ -1,0 +1,30 @@
+<!-- app/views/home/index.html.erb -->
+<div class="home-index !bg-blue-200 min-h-screen flex flex-col items-center justify-center text-center">
+  <div class="max-w-xl p-6 bg-white/20 backdrop-blur-sm rounded-2xl shadow-lg">
+    <h1 class="text-3xl font-bold mb-2 text-gray-800">ようこそ！MyGoalLogへ</h1>
+    <p class="text-lg mb-6 text-gray-700">自分の目標を設定して、達成しよう!</p>
+
+    <h3 class="text-2xl font-semibold mb-3 text-gray-800">使い方</h3>
+    <ol class="list-decimal list-inside text-left mb-6 text-gray-700">
+      <li>目標を投稿しよう（タイトルと説明を入力）</li>
+      <li>進捗を更新して、自分の成長を記録しよう</li>
+      <li>他の人の目標を見て、応援やコメントをしよう</li>
+    </ol>
+
+    <h3 class="text-2xl font-semibold mb-3 text-gray-800">使用例</h3>
+    <ul class="list-disc list-inside text-left mb-8 text-gray-700">
+      <li>100万円貯金したい（目標を設定）</li>
+      <li>10万円貯金ができた（進捗を更新）</li>
+      <li>目標達成！</li>
+    </ul>
+
+    <div class="flex justify-center space-x-4">
+      <%= link_to "ログイン", new_user_session_path, class: "px-4 py-1.5 !bg-blue-600 text-white text-sm rounded hover:!bg-blue-700 transition" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "px-4 py-1.5 !bg-green-500 text-white text-sm rounded hover:!bg-green-600 transition" %>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="mt-10 w-full py-4 !bg-blue-200 text-center text-gray-700">
+  </footer>
+</div>
